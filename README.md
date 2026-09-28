@@ -1,21 +1,18 @@
-# React + TypeScript + Vite + shadcn/ui
+# SMHI Lightning History
 
-This is a template for a new Vite project with React, TypeScript, and shadcn/ui.
+Check historical lightning strikes within a radius (nautical miles) of any point, using the [SMHI open data lightning archive](https://opendata.smhi.se/lightning/archive/introduction) (2012–today).
 
-## Adding components
+Everything runs in your browser: data is fetched directly from SMHI and can be downloaded as CSV. All times are UTC.
 
-To add components to your app, run the following command:
+**Live:** <https://druwan.github.io/smhi-lightning/>
 
-```bash
-npx shadcn@latest add button
+## Development
+
+```
+bun install
+bun run dev
 ```
 
-This will place the ui components in the `src/components` directory.
+Pushes to `main` deploy automatically to GitHub Pages.
 
-## Using components
-
-To use the components in your app, import them as follows:
-
-```tsx
-import { Button } from "@/components/ui/button"
-```
+Built with Vite, React, TypeScript and shadcn/ui.
