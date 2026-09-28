@@ -309,13 +309,13 @@ export default function App() {
                             <TableHead>Time (UTC)</TableHead>
                             <TableHead className="text-right">Lat</TableHead>
                             <TableHead className="text-right">Lon</TableHead>
+                            <TableHead className="text-right">Dist (NM)</TableHead>
                             <TableHead className="text-right">
                               <HelpHint label="Peak (kA)">{HELP.peakCurrent}</HelpHint>
                             </TableHead>
                             <TableHead>
                               <HelpHint label="Type">{HELP.type}</HelpHint>
                             </TableHead>
-                            <TableHead>Type</TableHead>
                           </TableRow>
                         </TableHeader>
                         <TableBody>
