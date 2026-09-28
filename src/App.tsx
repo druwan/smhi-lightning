@@ -1,5 +1,5 @@
 import { useState, useMemo, useRef } from 'react'
-import type { ChangeEvent } from 'react'
+import type { ChangeEvent, ReactNode } from 'react'
 import type { DateRange } from 'react-day-picker'
 import { CalendarIcon, Download, LocateFixed, Loader2, Search, X, Zap } from 'lucide-react'
 
@@ -17,6 +17,7 @@ import { Progress } from '@/components/ui/progress'
 import { Switch } from '@/components/ui/switch'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { HELP, HelpHint } from './components/help-hint'
 
 const MAX_DAYS = 366
 const MAX_TABLE_ROWS = 500
@@ -244,7 +245,7 @@ export default function App() {
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               <Stat label="Strikes" value={shown.length} />
               <Stat label="Days with lightning" value={days.length} />
-              <Stat label="Cloud-to-ground" value={cgCount} />
+              <Stat label={<HelpHint label="Cloud-to-ground">{HELP.cloudToGround}</HelpHint>} value={cgCount} />
               <Stat label="Closest" value={closest === null ? '–' : `${closest.toFixed(2)} NM`} />
             </div>
 
@@ -275,7 +276,7 @@ export default function App() {
                           <TableRow>
                             <TableHead>Date</TableHead>
                             <TableHead className="text-right">Strikes</TableHead>
-                            <TableHead className="text-right">Cloud-to-ground</TableHead>
+                            <TableHead className="text-right"><HelpHint label="Cloud to ground">{HELP.cloudToGround}</HelpHint></TableHead>
                             <TableHead className="text-right">Closest (NM)</TableHead>
                           </TableRow>
                         </TableHeader>
@@ -308,8 +309,12 @@ export default function App() {
                             <TableHead>Time (UTC)</TableHead>
                             <TableHead className="text-right">Lat</TableHead>
                             <TableHead className="text-right">Lon</TableHead>
-                            <TableHead className="text-right">Dist (NM)</TableHead>
-                            <TableHead className="text-right">Peak (kA)</TableHead>
+                            <TableHead className="text-right">
+                              <HelpHint label="Peak (kA)">{HELP.peakCurrent}</HelpHint>
+                            </TableHead>
+                            <TableHead>
+                              <HelpHint label="Type">{HELP.type}</HelpHint>
+                            </TableHead>
                             <TableHead>Type</TableHead>
                           </TableRow>
                         </TableHeader>
@@ -342,7 +347,7 @@ export default function App() {
   )
 }
 
-function Stat({ label, value }: { label: string; value: number | string }) {
+function Stat({ label, value }: { label: ReactNode; value: number | string }) {
   return (
     <Card className="gap-1 py-4">
       <CardHeader className="px-4">
